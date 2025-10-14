@@ -1,0 +1,81 @@
+.search-wrapper {
+  width: 100%;
+  border: solid 1px rgb(211, 211, 211);
+  padding: 25px;
+  border-radius: 20px;
+
+  .museum {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    justify-content: space-between;
+
+    .glass-icon {
+      position: absolute;
+      padding: 13px;
+    }
+    .suggestions {
+      margin-top: 2.5rem;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      list-style: none;
+      padding: 0;
+      max-height: 16rem; 
+      overflow-y: auto;
+      z-index: 10;
+      position: absolute;
+      width: 61%;
+      transition: all 0.2s ease-in-out;
+
+      li {
+        padding: 0.5rem 0.75rem;
+        cursor: pointer;
+        transition: background 0.15s ease;
+
+        &:hover {
+          background: #f5f5f5;
+        }
+
+        &:not(:last-child) {
+          border-bottom: 1px solid #eee;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 3px;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: #aaa;
+      }
+    }
+
+    input {
+      width: 80%;
+      height: 40px;
+      border-radius: 10px;
+      border: 0;
+      background-color: rgb(226, 226, 226);
+      padding-left: 50px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .toggle-filters-btn {
+      width: 12%;
+      border-radius: 10px;
+      border: 0;
+    }
+  }
+
+  .filters {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+  }
+}
