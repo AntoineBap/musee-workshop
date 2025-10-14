@@ -130,7 +130,7 @@ const SearchInput = ({ onSearch }) => {
             <label>Ville</label>
             <input
               type="text"
-              placeholder="Ville"
+              placeholder="Nom de la ville..."
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
@@ -140,7 +140,7 @@ const SearchInput = ({ onSearch }) => {
             <label>Région</label>
             <input
               type="text"
-              placeholder="Région"
+              placeholder="Toutes les régions"
               value={region}
               onChange={(e) => handleRegionChange(e.target.value)}
             />
@@ -165,7 +165,7 @@ const SearchInput = ({ onSearch }) => {
             <label>Département</label>
             <input
               type="text"
-              placeholder="Département"
+              placeholder="Tous les départements"
               value={department}
               onChange={(e) => handleDepartmentChange(e.target.value)}
             />
@@ -190,7 +190,7 @@ const SearchInput = ({ onSearch }) => {
             <label>Thématique</label>
             <input
               type="text"
-              placeholder="Thématique"
+              placeholder="Tous les domaines thématiques"
               value={thematic}
               onChange={(e) => handleThematicChange(e.target.value)}
             />
