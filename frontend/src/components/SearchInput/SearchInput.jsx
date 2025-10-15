@@ -99,9 +99,9 @@ const SearchInput = ({ onSearch }) => {
         />
         {museumSuggestions.length > 0 && (
           <ul className="suggestions">
-            {museumSuggestions.map((m) => (
+            {museumSuggestions.map((m, index) => (
               <li
-                key={m}
+                key={index}
                 onClick={() => {
                   setMuseum(m);
                   setMuseumSuggestions([]);

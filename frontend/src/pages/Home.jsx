@@ -15,8 +15,7 @@ const Home = () => {
 
   // construction dynamique de l'url
   const buildUrl = () => {
-    const baseUrl =
-      "https://data.culture.gouv.fr/api/explore/v2.1/catalog/datasets/musees-de-france-base-museofile/records";
+    const baseUrl = import.meta.env.VITE_BASE_URL;
 
     const clauses = [];
     if (filters.region) clauses.push(`region="${filters.region}"`);
@@ -29,7 +28,7 @@ const Home = () => {
 
     const whereClause =
       clauses.length > 0 ? `?where=${encodeURIComponent(clauses.join(" AND "))}` : "";
-    return `${baseUrl}${whereClause}&limit=100`;
+    return `${baseUrl}${whereClause}`;
   };
 
   // on recupere les musées
@@ -76,8 +75,9 @@ const Home = () => {
                 key={musee.id}
                 to={`/musee/${musee.id}`}
                 className="musee-link"
-              >
-                {musee.name},  
+              > 
+                
+                  {musee.name},  
                 {musee.adress}
               </Link>
             ))

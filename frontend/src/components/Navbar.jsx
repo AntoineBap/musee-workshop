@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/navbar.scss";
 import { useAuth } from "../lib/authContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,6 +7,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const { authenticated, logout } = useAuth();
+  const { navigate } = useNavigate;
 
   const handleLogout = () => {
     logout();
@@ -25,6 +26,7 @@ const Navbar = () => {
               <FontAwesomeIcon icon={faMagnifyingGlass} />
               Recherche
             </NavLink>
+
           </li>
           {authenticated ? (
             <>
