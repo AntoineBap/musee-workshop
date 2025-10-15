@@ -1,10 +1,9 @@
 import "../styles/home.scss";
 import { useEffect, useState } from "react";
 import SearchInput from "../components/SearchInput/SearchInput.jsx";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const navigate = useNavigate();
   const [musees, setMusees] = useState([]);
   const [filters, setFilters] = useState({
     region: "",
@@ -14,6 +13,7 @@ const Home = () => {
     museum: "",
   });
 
+  // construction dynamique de l'url
   const buildUrl = () => {
     const baseUrl =
       "https://data.culture.gouv.fr/api/explore/v2.1/catalog/datasets/musees-de-france-base-museofile/records";
@@ -24,21 +24,29 @@ const Home = () => {
     if (filters.department) clauses.push(`departement="${filters.department}"`);
     if (filters.thematic)
       clauses.push(`domaine_thematique="${filters.thematic}"`);
-    if (filters.museum) clauses.push(`nom_officiel LIKE "%${filters.museum}%"`);
+    if (filters.museum)
+      clauses.push(`nom_officiel LIKE "%${filters.museum}%"`);
 
     const whereClause =
       clauses.length > 0 ? `?where=${encodeURIComponent(clauses.join(" AND "))}` : "";
     return `${baseUrl}${whereClause}&limit=100`;
   };
 
+  // on recupere les musées
   useEffect(() => {
     const url = buildUrl();
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         if (data.results && Array.isArray(data.results)) {
-          const names = data.results.map((item) => item.nom_officiel);
-          setMusees(names);
+
+          const museesData = data.results.map((item) => ({
+            id: item.identifiant,
+            name: item.nom_officiel,
+            adress: item.adresse,
+
+          }));
+          setMusees(museesData);
         } else {
           setMusees([]);
         }
@@ -57,13 +65,22 @@ const Home = () => {
           <h2>Explorer les 1222 musées de France</h2>
         </div>
 
-        {/* Composant unifié */}
+        {/* Component de recherche importe*/}
         <SearchInput onSearch={setFilters} />
 
-        {/* Liste des musées */}
+        {/* Liste des musees */}
         <div className="musees-list">
           {musees.length > 0 ? (
-            musees.map((name) => <p key={name}>{name}</p>)
+            musees.map((musee) => (
+              <Link
+                key={musee.id}
+                to={`/musee/${musee.id}`}
+                className="musee-link"
+              >
+                {musee.name},  
+                {musee.adress}
+              </Link>
+            ))
           ) : (
             <p>Aucun musée trouvé</p>
           )}

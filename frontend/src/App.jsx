@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import Profile from "./pages/Profile";
+import Musee from "./pages/Musee";
 import "./styles/app.scss";
 import { AuthProvider } from "./lib/authContext";
 
@@ -26,6 +27,7 @@ function AppContent() {
         <Route path="home" element={<Home />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="musee/:id" element={<Musee />} />
       </Routes>
     </div>
   );

@@ -5,7 +5,6 @@ import { REGIONS, DEPARTEMENTS, DOMAINE_THEMATIQUE, MUSEES } from "../../data/mu
 import "./SearchInput.scss";
 
 const SearchInput = ({ onSearch }) => {
-  // États
   const [museum, setMuseum] = useState("");
   const [region, setRegion] = useState("");
   const [city, setCity] = useState("");
@@ -36,7 +35,7 @@ const SearchInput = ({ onSearch }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // 🔹 Handlers des champs
+  // handlers des changements
   const handleMuseumChange = (value) => {
     setMuseum(value);
     if (!value) {
@@ -83,7 +82,7 @@ const SearchInput = ({ onSearch }) => {
     onSearch({ region: "", city: "", department: "", thematic: "", museum: "" });
   };
 
-  // 🔹 Transmet les filtres au parent (`Home`)
+  // transmet les filtres au parent (`Home`)
   useEffect(() => {
     onSearch({ region, city, department, thematic, museum });
   }, [region, city, department, thematic, museum]);

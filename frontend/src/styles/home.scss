@@ -6,9 +6,46 @@
             flex-direction: column;
             justify-content: flex-start;
             padding-top: 40px;
-        }
+        }   
+        
+        .musees-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); // 2 colonnes
+            gap: 1.5rem; // espace entre les cartes/liens
+            margin-top: 2rem;
+            padding: 1rem;
 
-        
-        
+            .musee-link {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+
+                background-color: #f7f7f7;
+                border-radius: 1rem;
+                padding: 1.5rem;
+                text-decoration: none;
+                color: #222;
+                font-weight: 500;
+                font-size: 1rem;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                transition: all 0.25s ease;
+
+                &:hover {
+                background-color: #e8f0fe;
+                color: #1a73e8;
+                transform: translateY(-3px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                }
+            }
+            }
+
+            /* 📱 Responsive : passe en 1 colonne sur mobile */
+            @media (max-width: 768px) {
+            .musees-list {
+                grid-template-columns: 1fr;
+            }
+            }
+
     }
 }
