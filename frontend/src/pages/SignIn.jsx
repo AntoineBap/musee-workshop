@@ -23,11 +23,10 @@ function SignIn() {
       setIsLoading(true);
       const response = await axios.post(API_ROUTES.SIGN_IN, { email, password });
 
-      if (!response?.data?.token) {
-        setNotification({ error: true, message: "Une erreur est survenue" });
-      } else {
+      if (response?.data?.token) {
+        localStorage.setItem("token", response.data.token); // <-- ajouté
         login({ token: response.data.token, userId: response.data.userId });
-        navigate("/"); // Navbar se met à jour automatiquement
+        navigate("/"); 
       }
     } catch (err) {
       const backendMessage = err.response?.data?.message || err.response?.data?.error || err.message;

@@ -87,13 +87,45 @@ const SearchInput = ({ onSearch }) => {
     onSearch({ region, city, department, thematic, museum });
   }, [region, city, department, thematic, museum]);
 
+  const buildMapSrc = (filters) => {
+  const baseSrc = "https://data.culture.gouv.fr/explore/embed/dataset/musees-de-france-base-museofile/map/?disjunctive.region&disjunctive.departement&location=2,18.55609,-3.09761&static=false&datasetcard=false&scrollWheelZoom=false";
+  const url = new URL(baseSrc);
+
+  // Supprime les refine précédents
+  Object.keys(url.searchParams)
+    .filter(key => key.startsWith("refine."))
+    .forEach(key => url.searchParams.delete(key));
+
+  if (filters.region) url.searchParams.append("refine.region", filters.region);
+  if (filters.department) url.searchParams.append("refine.departement", filters.department);
+  if (filters.thematic && filters.thematic.length > 0) {
+    filters.thematic.forEach(th => url.searchParams.append("refine.domaine_thematique", th));
+  }
+
+  return url.toString();
+};
+
+const filtersForMap = {
+  region,
+  department,
+  thematic: thematic ? [thematic] : [],
+};
+
+const baseSrc = "https://data.culture.gouv.fr/explore/embed/dataset/musees-de-france-base-museofile/map/?disjunctive.region&disjunctive.departement&location=2,18.55609,-3.09761&static=false&datasetcard=false&scrollWheelZoom=false";
+const iframeSrc = buildMapSrc(filtersForMap);
+
+
+  
+
+
+
   return (
     <div className="search-wrapper" ref={wrapperRef}>
       <div className="museum">
         <FontAwesomeIcon icon={faMagnifyingGlass} className="glass-icon" />
         <input
           type="text"
-          placeholder="Recherchez par nom ou adresse..."
+          placeholder="Recherchez par nom..."
           value={museum}
           onChange={(e) => handleMuseumChange(e.target.value)}
         />
@@ -209,6 +241,15 @@ const SearchInput = ({ onSearch }) => {
               </ul>
             )}
           </div>
+          
+          {/* Iframe dynamique
+          <div className="map-preview">
+            <iframe
+              src={iframeSrc}
+              width="800"
+              height="300"
+            />
+          </div>  */}
 
           <button className="reset-filters" onClick={handleReset}>
             Réinitialiser les recherches
