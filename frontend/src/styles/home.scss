@@ -72,12 +72,12 @@
                 color: #374151;
                 background-color: #f9fafb;
                 white-space: nowrap;
-                cursor: pointer; 
+                cursor: pointer;
                 transition: all 0.2s ease;
 
                 &:hover {
-                  background-color: #e0f2fe; 
-                  border-color: #1d4ed8; 
+                  background-color: #e0f2fe;
+                  border-color: #1d4ed8;
                   color: #1d4ed8;
                 }
               }
@@ -97,18 +97,77 @@
         }
       }
     }
+  }
 
-    @media (max-width: 1200px) {
-      .musees-list {
-        grid-template-columns: repeat(2, 1fr);
+  /* Responsive */
+  @media (max-width: 1295px) {
+    .searchpage{
+      .musees-wrapper{
+        .musees-list {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
     }
+  }
 
-    @media (max-width: 768px) {
-      padding: 0 20px;
+  @media (max-width: 858px) {
 
-      .musees-list {
-        grid-template-columns: 1fr;
+    .searchpage{
+      padding: 0 30px;
+      .musees-wrapper{
+        .musees-list {
+          grid-template-columns:  1fr;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 10px;
+
+    .searchpage-titles {
+      padding-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .musees-wrapper {
+      padding-right: 10px;
+    }
+
+    .musee-card {
+      padding: 1rem !important;
+
+      .card-title {
+        font-size: 1rem;
+      }
+
+      .card-thematic .thematic-tag {
+        font-size: 0.8rem;
+      }
+
+      .card-adress {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  @media (max-width: 370px) {
+    padding: 0 5px;
+
+    .musee-card {
+      padding: 0.75rem !important;
+
+      .card-title {
+        font-size: 0.9rem;
+      }
+
+      .card-thematic .thematic-tag {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.4rem;
+      }
+
+      .card-adress {
+        font-size: 0.8rem;
       }
     }
   }

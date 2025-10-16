@@ -9,6 +9,7 @@
     flex-direction: row;
     justify-content: space-between;
     position: relative;
+    align-items: center;
 
     .glass-icon {
       position: absolute;
@@ -34,7 +35,7 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       list-style: none;
       padding: 0;
-      max-height: 16rem; 
+      max-height: 16rem;
       overflow-y: auto;
       z-index: 10;
       position: absolute;
@@ -60,6 +61,8 @@
       width: 12%;
       border-radius: 10px;
       border: 0;
+      height: 40px;
+      font-weight: 600;
     }
   }
 
@@ -80,7 +83,6 @@
       }
 
       input {
-        width: span 2;
         height: 40px;
         border-radius: 10px;
         border: 0;
@@ -119,12 +121,11 @@
         }
       }
 
-      /* Chips cumulables sous l’input */
       .chips-container {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
-        margin-top: 0.5rem; /* sous l'input */
+        margin-top: 0.5rem;
       }
 
       .filter-chip {
@@ -156,6 +157,99 @@
 
       &:hover {
         background-color: #f2baba;
+      }
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .museum{
+      input{
+        width: 75%;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+
+    .museum {
+
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+
+      input{
+        width: calc(100% - 50px);
+      }
+
+      .toggle-filters-btn {
+        width: 100%;
+      }
+    }
+
+    .filters{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px;
+
+    .museum {
+      .glass-icon {
+        padding: 10px;
+      }
+
+      input {
+        font-size: 14px;
+      }
+    }
+
+    .filters {
+      grid-gap: 15px;
+
+      .filter-field input {
+        font-size: 14px;
+      }
+
+      .reset-filters {
+        height: 40px;
+      }
+    }
+  }
+
+  @media (max-width: 370px) {
+    padding: 10px;
+
+    .museum {
+      input {
+        height: 35px;
+        font-size: 13px;
+        padding-left: 35px;
+      }
+
+      .toggle-filters-btn {
+        font-size: 13px;
+        height: 35px;
+      }
+    }
+
+    .filters {
+      grid-gap: 10px;
+
+      .filter-field {
+        label {
+          font-size: 13px;
+        }
+
+        input {
+          height: 35px;
+          font-size: 13px;
+        }
+      }
+
+      .reset-filters {
+        font-size: 13px;
+        height: 38px;
       }
     }
   }
