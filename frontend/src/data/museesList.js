@@ -11,7 +11,7 @@ export const REGIONS = [
   "Normandie",
   "Nouvelle-Aquitaine",
   "Occitanie",
-  "Pays de la Loire",
+  "Pays-de-la-Loire",
   "Provence-Alpes-Côte d'Azur",
 ];
 
@@ -28,6 +28,13 @@ export const DEPARTEMENTS = [
   "Aube",
   "Aude",
   "Aveyron",
+  "Bouches-du-Rhône",
+  "Calvados",
+  "Cantal",
+  "Charente",
+  "Charente-Maritime",
+  "Cher",
+  "Corrèze",
   "Corse-du-Sud",
   "Haute-Corse",
   "Côte-d'Or",
@@ -105,7 +112,13 @@ export const DEPARTEMENTS = [
   "Seine-Saint-Denis",
   "Val-de-Marne",
   "Val-d'Oise",
+  "Guadeloupe",
+  "Martinique",
+  "Guyane",
+  "La Réunion",
+  "Mayotte"
 ];
+
 
 export const DOMAINE_THEMATIQUE = [
   "Histoire",

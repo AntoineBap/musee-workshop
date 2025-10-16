@@ -82,15 +82,7 @@ const Musee = () => {
         {musee.histoire && <p>{musee.histoire}</p>}
         <button
           onClick={toggleFavorite}
-          style={{
-            marginTop: "10px",
-            padding: "8px 16px",
-            backgroundColor: isFavorite ? "#ff6b6b" : "#ddd",
-            color: isFavorite ? "#fff" : "#000",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
+          
         >
           {isFavorite ? "★ Favori" : "☆ Ajouter aux favoris"}
         </button>
