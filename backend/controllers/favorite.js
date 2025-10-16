@@ -9,10 +9,11 @@ exports.toggleFavorite = async (req, res) => {
 
     if (!user) return res.status(404).json({ message: 'Utilisateur non trouvé' });
 
-    if (user.favorites.includes(museumId)) {
+
+    if (user.favorites.includes(museumId)) { // si le user a le musée en favori on le retire
       user.favorites = user.favorites.filter(id => id !== museumId);
     } else {
-      user.favorites.push(museumId);
+      user.favorites.push(museumId); // sinon on l'ajoute
     }
 
     await user.save();

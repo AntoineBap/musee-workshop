@@ -20,11 +20,11 @@
 
       .musees-list {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); // 3 colonnes desktop
+        grid-template-columns: repeat(3, 1fr);
         gap: 1.75rem;
         width: 100%;
         padding: 20px;
-        max-height: calc(3 * (200px + 1.75rem)); // 3 cards + gap
+        max-height: calc(3 * (200px + 1.75rem));
         overflow-y: auto;
 
         .musee-link {
@@ -72,12 +72,12 @@
                 color: #374151;
                 background-color: #f9fafb;
                 white-space: nowrap;
-                cursor: pointer; // indique que c’est cliquable
+                cursor: pointer; 
                 transition: all 0.2s ease;
 
                 &:hover {
-                  background-color: #e0f2fe; // bleu clair au hover
-                  border-color: #1d4ed8; // bleu foncé
+                  background-color: #e0f2fe; 
+                  border-color: #1d4ed8; 
                   color: #1d4ed8;
                 }
               }
