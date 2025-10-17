@@ -67,7 +67,6 @@ const Home = () => {
             thematic: Array.isArray(item.domaine_thematique)
               ? item.domaine_thematique.filter((t) => t && t.trim() !== "")
               : [],
-
             department: item.departement,
             city: item.ville,
           }));

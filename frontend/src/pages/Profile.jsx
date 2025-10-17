@@ -9,13 +9,14 @@ const Profile = () => {
 
   useEffect(() => {
     if (!authenticated) return;
-
+    
     const fetchFavorites = async () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
       try {
+        // on fait notre fetch pour recuperer la liste des favoris
         const res = await fetch(`${API_URL}/api/user/favorites`, {
           headers: { Authorization: token ? `Bearer ${token}` : "" },
         });
@@ -23,6 +24,7 @@ const Profile = () => {
         const favoriteIds = data.favorites || [];
 
         const museePromises = favoriteIds.map((id) => {
+          // pour chaque id, fetch du musée pour recuperer ses données et les afficher plus tard
           const url = `${import.meta.env.VITE_BASE_URL}?where=${encodeURIComponent(
             `identifiant="${id}"`
           )}`;

@@ -14,9 +14,9 @@ Ce projet consiste en la création d'un site pour consulter la base de données 
 
 Il y'a également un système de login et sign up grâce à une API Express, ainsi qu'un système de favoris lorsque l'utilisateur est connecté
 
-Le projet consiste en 4 pages differentes : 
+Le projet consiste en 4 pages differentes (toutes sont responsive): 
 
-+ Une page d'accueil (/home) sur laquelle il est possible de lancer la recherche de musée (sans être login). On retrouve également une navbar qui nous permet d'acceder a la page de login, ainsi qu'a la page de profil et le bouton de deconnexion (dans le cas ou l'utilisateur est déconnecté)
++ Une page d'accueil (/home) sur laquelle il est possible de lancer la recherche de musée (sans être login). On retrouve également une navbar qui nous permet d'acceder a la page de login, ainsi qu'a la page de profil et le bouton de deconnexion (dans le cas ou l'utilisateur est connecté)
 
 + Une page de login (/login) permettant via 2 inputs (email et mot de passe) de se connecter ou de s'inscrire. L'inscription/connexion permet seulement de mettre des musées en favoris pour les consulter plus tard. Le reste des fonctionnalités du site est accessible sans connexion.
 
@@ -28,7 +28,9 @@ Les technologies utilisées sont :
 
 Pour le front-end : React.js, Vite, SaSS, JS, Vercel
 
-Pour le back-end : JS, Express (node.js), MongoDB (Base de donnée), Render
+Pour le back-end : JS, Express (node.js), MongoDB (Base de donnée), Render 
+
+Le host back-end sur render étant gratuit, le serveur se coupe après une période d'inactivité, au lancement le site peut donc necessiter un chargement d'une dizaine de secondes lors de la premiere utilisation du serveur (Ex : connexion ou inscription)
 
 Concernant l'API Express, on y retrouve 4 requetes differentes : 
 
@@ -36,5 +38,8 @@ router.post('/favorites', auth, favoriteCtrl.toggleFavorite); Pour mettre ou ret
 router.get('/favorites', auth, favoriteCtrl.getFavorites); Pour récuperer les favoris 
 router.post('/login', userCtrl.login); Pour se connecter
 router.post('/signup', userCtrl.signup); Pour s'inscrire
+
+La base de données MongoDB stocke un utilisateur ainsi que les infos qui lui correspondent (email, hash, array de favoris)
+
 
 

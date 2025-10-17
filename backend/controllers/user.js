@@ -12,6 +12,8 @@ schema
 
 exports.signup = async (req, res, next) => {
     try {
+
+        // verification de la conformité du mdp selon le schema
         if (!schema.validate(req.body.password)) {
             return res.status(400).json({ 
                 success: false,
@@ -19,6 +21,7 @@ exports.signup = async (req, res, next) => {
             });
         }
 
+        // on verifie que le mail n'est pas deja utilisé 
         const existingUser = await User.findOne({ email: req.body.email });
         if (existingUser) {
             return res.status(400).json({
@@ -26,8 +29,10 @@ exports.signup = async (req, res, next) => {
                 message: "Cet email est déjà utilisé." });
         }
         
+        // 10 passages de hash 
         const hash = await bcrypt.hash(req.body.password, 10);
         
+        // stockage des infos 
         const user = new User({
             email: req.body.email,
             password: hash,
@@ -42,15 +47,18 @@ exports.signup = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     try {
+        // on verifie que le mail utilisé est deja assigné a un compte existant
         const user = await User.findOne({ email: req.body.email });
         if (!user) {
             return res.status(401).json({ error: 'Paire Identifiant/Mot de passe incorrecte' });
         }
         
+        // on verifie avec compare que le hash et le mdp fourni correspondent
         const valid = await bcrypt.compare(req.body.password, user.password);
         if (!valid) {
             return res.status(401).json({ error: 'Paire Identifiant/Mot de passe incorrecte' });
         }
+        // creation d'un token assigné au user
         const token = jwt.sign(
             { userId: user._id },
             process.env.JWT_SECRET,

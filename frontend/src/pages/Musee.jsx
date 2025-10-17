@@ -37,6 +37,7 @@ const Musee = () => {
           setMusee(museumData);
 
           if (authenticated) {
+            // on verifie si le musée est deja en favori au lancement de la page
             const token = localStorage.getItem("token");
             const favRes = await fetch(
               `${import.meta.env.VITE_API_URL || "http://localhost:3000"}/api/user/favorites`,

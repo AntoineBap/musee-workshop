@@ -23,7 +23,6 @@ export async function getAuthenticatedUser() {
 }
 
 
-// Si tu veux removeFromLocalStorage
 export const removeFromLocalStorage = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("userId");
