@@ -82,6 +82,7 @@ const Home = () => {
       });
   }, [filters]);
 
+  // mets en majuscule la 1ere lettre
   const capitalizeFirstLetter = (str) => {
     if (!str) return "";
     return str.charAt(0).toUpperCase() + str.slice(1);

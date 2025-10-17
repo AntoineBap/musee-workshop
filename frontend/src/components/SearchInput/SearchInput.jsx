@@ -25,6 +25,8 @@ const SearchInput = ({ filters, setFilters }) => {
   const wrapperRef = useRef(null);
 
   useEffect(() => {
+
+    // si le focus est perdu par un clic, les suggestions s'effacent
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
         setMuseumSuggestions([]);
@@ -37,6 +39,7 @@ const SearchInput = ({ filters, setFilters }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // gere le changement des suggestions de musées lors de l'input
   const handleMuseumChange = (value) => {
     setMuseum(value);
     setMuseumSuggestions(
@@ -49,6 +52,7 @@ const SearchInput = ({ filters, setFilters }) => {
     setFilters((prev) => ({ ...prev, museum: value }));
   };
 
+  // gere le changement des suggestions de region lors de l'input
   const handleRegionChange = (value) => {
     setRegionInput(value);
     setRegionSuggestions(
@@ -58,6 +62,7 @@ const SearchInput = ({ filters, setFilters }) => {
     );
   };
 
+  // gere le changement des suggestions de departement lors de l'input
   const handleDepartmentChange = (value) => {
     setDepartmentInput(value);
     setDepartmentSuggestions(
@@ -69,6 +74,7 @@ const SearchInput = ({ filters, setFilters }) => {
     );
   };
 
+  // gere le changement des suggestions de thematiques lors de l'input
   const handleThematicChange = (value) => {
     setThematicInput(value);
     setThematicSuggestions(
@@ -80,6 +86,7 @@ const SearchInput = ({ filters, setFilters }) => {
     );
   };
 
+  // fonction pour ajouter un filtre (notamment en cliquant sur une thématique dans la liste de musees)
   const addFilter = (value, selectedArrayName) => {
     if (!value) return;
     setFilters((prev) => {
@@ -98,7 +105,7 @@ const SearchInput = ({ filters, setFilters }) => {
     if (selectedArrayName === "department") setDepartmentInput("");
   };
 
-
+  // fonction utilisée pour retirer un filtre (en appuyant sur la croix d'un filtre par exemple)
   const removeFilter = (value, selectedArrayName) => {
     setFilters((prev) => {
       const current = Array.isArray(prev[selectedArrayName])
@@ -111,6 +118,7 @@ const SearchInput = ({ filters, setFilters }) => {
     });
   };
 
+  // reset tous les filtres
   const handleReset = () => {
     setFilters({
       region: "",
@@ -139,7 +147,8 @@ const SearchInput = ({ filters, setFilters }) => {
           onChange={(e) => handleMuseumChange(e.target.value)}
           onBlur={() => setTimeout(() => setMuseumSuggestions([]), 100)}
         />
-
+        
+        {/* affichage des suggestions des musées */}
         {museumSuggestions.length > 0 && (
           <ul className="suggestions">
             {museumSuggestions.map((m) => (
@@ -160,7 +169,7 @@ const SearchInput = ({ filters, setFilters }) => {
 
       {showFilters && (
         <div className="filters">
-          {/* Ville */}
+          {/* Input filtre ville */}
           <div className="filter-field">
             <label>Ville</label>
             <input
@@ -172,6 +181,8 @@ const SearchInput = ({ filters, setFilters }) => {
                 e.key === "Enter" && addFilter(cityInput, "city")
               }
             />
+
+            {/* affichage des chips de filtrage */}
             <div className="chips-container">
               {Array.isArray(filters.city) &&
                 filters.city.map((c) => (
@@ -183,7 +194,7 @@ const SearchInput = ({ filters, setFilters }) => {
             </div>
           </div>
 
-          {/* Région */}
+          {/* Input filtre region */}
           <div className="filter-field">
             <label>Région</label>
             <input
@@ -197,6 +208,7 @@ const SearchInput = ({ filters, setFilters }) => {
               onBlur={() => setTimeout(() => setRegionSuggestions([]), 100)}
             />
 
+            {/* affichage des suggestions de region */}
             {regionSuggestions.length > 0 && (
               <ul className="suggestions">
                 {regionSuggestions.map((r) => (
@@ -206,6 +218,8 @@ const SearchInput = ({ filters, setFilters }) => {
                 ))}
               </ul>
             )}
+
+            {/* affichage des chips de filtrage */}
             <div className="chips-container">
               {Array.isArray(filters.region) &&
                 filters.region.map((r) => (

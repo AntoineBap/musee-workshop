@@ -7,7 +7,7 @@ import "../styles/leaflet.scss";
 import L from "leaflet";
 import "../styles/musee.scss";
 
-// Icône personnalisée pour Leaflet
+// icone personnalisee pour Leaflet
 const markerIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
   iconSize: [35, 35],
